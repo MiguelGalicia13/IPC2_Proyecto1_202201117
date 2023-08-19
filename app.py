@@ -1,9 +1,12 @@
-from lista_enlazada import lista_enlazada
 from tkinter import Tk
+from lista_senales import lista_senales
+from lista_datos import lista_datos
+import xml.etree.ElementTree as ET
 from tkinter.filedialog import askopenfilename
-
-datos = lista_enlazada()
+from senal import senal
+from dato import dato
 def menu():
+    global root
     print("----------Menu----------")
     print("1. Cargar Archivo")
     print("2. Procesar Archivo")
@@ -12,20 +15,53 @@ def menu():
     print("5. Generar Grafica")
     print("6. inicializar sistema")
     print("7. salir")
-    opcion=input("Ingrese una opcion: ")
+    print("------------------------")
+    lista_senales_temporal = lista_senales()
     while True:
+        opcion=input("Ingrese una opcion: ")
         match opcion:
             case "1":
-                Tk().withdraw() #! Abre un explorador de Archivos
-                #! Extensiones de archivos permitidas
-                extensiones = [("Archivo XML", "*.xml")]
-                #! Filtro para encontrar solo archivos con extension .XML
-                filename = askopenfilename(filetypes=extensiones)
-                if filename:
-                    with open(filename, 'r') as archivo:
-                        print("Archivo cargado con exito")
+                print("")
+                print("--------------------------------------------------------------")
+                print("Cargando archivo")
+                route = askopenfilename(filetypes=[("Archivo XML", "*.xml")])
+                archivo = open(route, "r")
+                archivo.close()
+                #Parciar XMML
+                tree = ET.parse(route)
+                root = tree.getroot()
+                print("Archivo cargado con exito")
+                print("--------------------------------------------------------------")
                 menu()
             case "2":
+                print("Procesando archivo")
+                print("--------------------------------------------------------------")
+                if root is None:
+                    print("Primero debes cargar un archivo.")
+                    menu()
+                else:
+                    for senal_temporal in root.findall("senal"):
+                        nombre_senal=senal_temporal.get("nombre")
+                        tiempo_senal=senal_temporal.get("t")
+                        amplitud_senal=senal_temporal.get("A")
+                        lista_datos_temporal=lista_datos()
+                        lista_patrones_temporal=lista_datos()
+                        lista_reducida_temporal=lista_datos()
+                        for dato_senal in senal_temporal.findall("dato"):
+                            tiempo_dato = dato_senal.get("t")
+                            amplitud_dato = dato_senal.get("A")
+                            data_dato = dato_senal.text
+                            #? Nueva medicion
+                            nuevo = dato(tiempo_dato,amplitud_dato,data_dato)
+                            lista_datos_temporal.add_dato(nuevo)
+                            if data_dato !="0":
+                                nuevo = dato(tiempo_dato,amplitud_dato,1)
+                                lista_patrones_temporal.add_dato(nuevo)
+                            else:
+                                nuevo = dato(tiempo_dato,amplitud_dato,0)
+                                lista_patrones_temporal.add_dato(nuevo)
+                        lista_senales_temporal.add_senal(senal(nombre_senal,tiempo_senal,amplitud_senal,lista_datos_temporal,lista_patrones_temporal,lista_reducida_temporal))
+                    lista_senales_temporal.recorrer()
                 menu()
             case "3":
                 menu()
@@ -45,12 +81,6 @@ def menu():
                 
                 menu()
             case "6":
-                if(datos.is_empty()):
-                    print("Lista vacia")
-                    menu()
-                else:
-                    datos.delete_list()
-                    print("Lista inicializada")
                 menu()
             case "7":
                 print("Gracias por usar el programa")
@@ -58,6 +88,6 @@ def menu():
             case _:
                 print("Opcion no valida")
                 menu()
-        return False
+    
 
 menu()
