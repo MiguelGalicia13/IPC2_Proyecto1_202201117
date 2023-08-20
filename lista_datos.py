@@ -35,6 +35,6 @@ class lista_datos:
         print("=====================================")
         actual = self.primero
         while actual != None:
-            print("Tiempo: ",actual.dato.tiempo," Amplitud: ",actual.dato.amplitud,"Medicion :",actual.dato.data)
+            print("Tiempo: ",actual.dato.tiempo," Amplitud: ",actual.dato.amplitud_data,"Medicion :",actual.dato.data)
             actual = actual.siguiente
         print("=====================================")

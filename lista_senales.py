@@ -37,5 +37,10 @@ class lista_senales:
         while actual != None:
             print("Tiempo: ",actual.senal.tiempo," Amplitud: ",actual.senal.amplitud," Nombre: ",actual.senal.nombre)
             actual.senal.lista_datos.recorrer()
+            print("Patrones de senal: ")
+            actual.senal.lista_patrones.recorrer()
             actual = actual.siguiente
         print("=====================================")
+    def delete (self):
+        self.primero = None
+        self.contador_senales =0

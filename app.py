@@ -6,6 +6,8 @@ from tkinter.filedialog import askopenfilename
 from senal import senal
 from dato import dato
 def menu():
+    global contador
+    contador =0
     global root
     print("----------Menu----------")
     print("1. Cargar Archivo")
@@ -47,6 +49,7 @@ def menu():
                         lista_datos_temporal=lista_datos()
                         lista_patrones_temporal=lista_datos()
                         lista_reducida_temporal=lista_datos()
+                        print("Analizando Señales")
                         for dato_senal in senal_temporal.findall("dato"):
                             tiempo_dato = dato_senal.get("t")
                             amplitud_dato = dato_senal.get("A")
@@ -54,14 +57,19 @@ def menu():
                             #? Nueva medicion
                             nuevo = dato(tiempo_dato,amplitud_dato,data_dato)
                             lista_datos_temporal.add_dato(nuevo)
+                            if contador == 0:
+                                print("Analizando Patrones y creando matriz reducida")
                             if data_dato !="0":
                                 nuevo = dato(tiempo_dato,amplitud_dato,1)
                                 lista_patrones_temporal.add_dato(nuevo)
                             else:
                                 nuevo = dato(tiempo_dato,amplitud_dato,0)
                                 lista_patrones_temporal.add_dato(nuevo)
-                        lista_senales_temporal.add_senal(senal(nombre_senal,tiempo_senal,amplitud_senal,lista_datos_temporal,lista_patrones_temporal,lista_reducida_temporal))
-                    lista_senales_temporal.recorrer()
+                            contador +=1
+                print("--------------------------------------------------------------")
+                print("Procesamiento de archivo finalizado")
+                print("--------------------------------------------------------------")
+                print("")
                 menu()
             case "3":
                 menu()
