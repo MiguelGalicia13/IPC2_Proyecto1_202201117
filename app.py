@@ -5,7 +5,19 @@ import xml.etree.ElementTree as ET
 from tkinter.filedialog import askopenfilename
 from senal import senal
 from dato import dato
+lista_datos_temporal=lista_datos()
+lista_patrones_temporal=lista_datos()
+lista_reducida_temporal=lista_datos()
+lista_senales_temporal = lista_senales()
+archivo = None
+contador = 0
+route = None
+root = None
+nombre_senal = None
+tiempo_senal = None
+amplitud_senal = None
 def menu():
+    global route
     global contador
     contador =0
     global root
@@ -17,28 +29,33 @@ def menu():
     print("5. Generar Grafica")
     print("6. inicializar sistema")
     print("7. salir")
-    print("------------------------")
-    lista_senales_temporal = lista_senales()
+    print("------------------------ \n")
     while True:
-        opcion=input("Ingrese una opcion: ")
+        opcion=input("Ingrese una opcion: \n")
         match opcion:
             case "1":
-                print("")
-                print("--------------------------------------------------------------")
+                print(" \n --------------------------------------------------------------")
                 print("Cargando archivo")
+                global archivo
+                global route
+                global root
+                archivo = None  # Reinicializa la variable archivo
                 route = askopenfilename(filetypes=[("Archivo XML", "*.xml")])
                 archivo = open(route, "r")
                 archivo.close()
-                #Parciar XMML
+                # Parciar XMML
                 tree = ET.parse(route)
                 root = tree.getroot()
-                print("Archivo cargado con exito")
-                print("--------------------------------------------------------------")
+                print("Archivo cargado con exito ")
+                print("-------------------------------------------------------------- \n")
                 menu()
             case "2":
-                print("Procesando archivo")
+                global nombre_senal
+                global tiempo_senal
+                global amplitud_senal
+                print("Procesando archivo \n")
                 print("--------------------------------------------------------------")
-                if root is None:
+                if archivo is None:
                     print("Primero debes cargar un archivo.")
                     menu()
                 else:
@@ -46,9 +63,6 @@ def menu():
                         nombre_senal=senal_temporal.get("nombre")
                         tiempo_senal=senal_temporal.get("t")
                         amplitud_senal=senal_temporal.get("A")
-                        lista_datos_temporal=lista_datos()
-                        lista_patrones_temporal=lista_datos()
-                        lista_reducida_temporal=lista_datos()
                         print("Analizando Señales")
                         for dato_senal in senal_temporal.findall("dato"):
                             tiempo_dato = dato_senal.get("t")
@@ -66,36 +80,49 @@ def menu():
                                 nuevo = dato(tiempo_dato,amplitud_dato,0)
                                 lista_patrones_temporal.add_dato(nuevo)
                             contador +=1
+                        lista_datos_temporal.recorrer()
+                        lista_patrones_temporal.recorrer()
+                        
+                    
                 print("--------------------------------------------------------------")
                 print("Procesamiento de archivo finalizado")
-                print("--------------------------------------------------------------")
-                print("")
+                print("--------------------------------------------------------------\n")
+                
                 menu()
             case "3":
+                
                 menu()
             case "4":
-                print("")
-                print("--------------------------------------------------------------")
+                print(" \n --------------------------------------------------------------")
                 print("                        Datos del Estudiante                 ")
                 print("--------------------------------------------------------------")
                 print("Miguel Ricardo Galicia Urrutia")
                 print("202201117")
                 print("Introduccion a la Programacion y Computacion 2 seccion \"A\"")
                 print("Ingenieria en Ciencias y Sistemas")
-                print("4to Semestre")
-                print("")
+                print("4to Semestre \n")
                 menu()
             case "5":
-                
+                lista_datos_temporal.generar_grafica_original(nombre_senal,tiempo_senal,amplitud_senal)
                 menu()
             case "6":
+                print("\n --------------------------------------------------------------")
+                print("Inicializando sistema")
+                lista_datos_temporal.delete()
+                lista_datos_temporal.recorrer()
+                print("Sistema inicializado con exito")
+                print("------------------------------------------------------------------ \n")
                 menu()
             case "7":
-                print("Gracias por usar el programa")
-                break
+                print("Gracias por usar el programa \n")
+                return False
+                
             case _:
                 print("Opcion no valida")
                 menu()
+        break
     
-
 menu()
+print("------------------------")
+print("Ejecucion finalizada")
+print("------------------------")
