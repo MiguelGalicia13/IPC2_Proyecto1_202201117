@@ -6,7 +6,7 @@ from tkinter.filedialog import askopenfilename
 from senal import senal
 from dato import dato
 lista_datos_temporal=lista_datos()
-lista_patrones_temporal=lista_datos()
+lista_binaria_temporal=lista_datos()
 lista_reducida_temporal=lista_datos()
 lista_senales_temporal = lista_senales()
 archivo = None
@@ -69,19 +69,19 @@ def menu():
                             amplitud_dato = dato_senal.get("A")
                             data_dato = dato_senal.text
                             #? Nueva medicion
-                            nuevo = dato(tiempo_dato,amplitud_dato,data_dato)
+                            nuevo = dato(int(tiempo_dato),amplitud_dato,data_dato)
                             lista_datos_temporal.add_dato(nuevo)
                             if contador == 0:
                                 print("Analizando Patrones y creando matriz reducida")
-                            if data_dato !="0":
-                                nuevo = dato(tiempo_dato,amplitud_dato,1)
-                                lista_patrones_temporal.add_dato(nuevo)
+                            if data_dato !="0": 
+                                nuevo = dato(int(tiempo_dato),amplitud_dato,1)
+                                lista_binaria_temporal.add_dato(nuevo)
                             else:
-                                nuevo = dato(tiempo_dato,amplitud_dato,0)
-                                lista_patrones_temporal.add_dato(nuevo)
+                                nuevo = dato(int(tiempo_dato),amplitud_dato,0)
+                                lista_binaria_temporal.add_dato(nuevo)
                             contador +=1
                         lista_datos_temporal.recorrer()
-                        lista_patrones_temporal.recorrer()
+                        lista_binaria_temporal.recorrer()
                         
                     
                 print("--------------------------------------------------------------")
@@ -90,7 +90,7 @@ def menu():
                 
                 menu()
             case "3":
-                
+                    
                 menu()
             case "4":
                 print(" \n --------------------------------------------------------------")
@@ -121,6 +121,7 @@ def menu():
                 print("Opcion no valida")
                 menu()
         break
+    
     
 menu()
 print("------------------------")

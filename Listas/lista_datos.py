@@ -1,4 +1,5 @@
-from nodo_dato import nodo_dato
+from nodos.nodo_dato import nodo_dato
+
 import sys
 import os
 class lista_datos:
@@ -58,7 +59,6 @@ class lista_datos:
         fila_iniciada = False
         while actual != None:
             if sentinela_de_filas != actual.dato.tiempo:
-                print(sentinela_de_filas,actual.dato.tiempo,"hola")
                 sentinela_de_filas=actual.dato.tiempo
                 fila_iniciada = False
                 text+="""</TR>\n"""

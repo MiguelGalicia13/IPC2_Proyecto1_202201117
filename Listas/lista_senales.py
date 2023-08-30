@@ -1,4 +1,4 @@
-from nodo_senal import nodo_senal
+from nodos.nodo_senal import nodo_senal
 class lista_senales:
     def __init__(self):
         self.primero = None
