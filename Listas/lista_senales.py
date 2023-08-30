@@ -1,4 +1,6 @@
 from nodos.nodo_senal import nodo_senal
+import sys
+import os
 class lista_senales:
     def __init__(self):
         self.primero = None
@@ -41,6 +43,3 @@ class lista_senales:
             actual.senal.lista_patrones.recorrer()
             actual = actual.siguiente
         print("=====================================")
-    def delete (self):
-        self.primero = None
-        self.contador_senales =0

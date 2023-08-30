@@ -1,14 +1,17 @@
 from tkinter import Tk
-from lista_senales import lista_senales
-from lista_datos import lista_datos
+from Listas.lista_senales import lista_senales
+from Listas.lista_datos import lista_datos
+from Listas.lista_patrones import lista_patrones
+from Listas.lista_grupos import lista_grupos
 import xml.etree.ElementTree as ET
 from tkinter.filedialog import askopenfilename
-from senal import senal
-from dato import dato
+from Modelos.senal import senal
+from Modelos.dato import dato
 lista_datos_temporal=lista_datos()
 lista_binaria_temporal=lista_datos()
-lista_reducida_temporal=lista_datos()
 lista_senales_temporal = lista_senales()
+lista_patrones_temporal=lista_patrones()
+lista_grupos_temporal=lista_grupos()
 archivo = None
 contador = 0
 route = None
@@ -80,6 +83,7 @@ def menu():
                                 nuevo = dato(int(tiempo_dato),amplitud_dato,0)
                                 lista_binaria_temporal.add_dato(nuevo)
                             contador +=1
+                        lista_senales_temporal.add_senal(senal(nombre_senal,tiempo_senal,amplitud_senal,lista_datos_temporal,lista_binaria_temporal,lista_patrones_temporal,lista_grupos_temporal))
                         lista_datos_temporal.recorrer()
                         lista_binaria_temporal.recorrer()
                         

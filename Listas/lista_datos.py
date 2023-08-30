@@ -1,5 +1,4 @@
 from nodos.nodo_dato import nodo_dato
-
 import sys
 import os
 class lista_datos:
@@ -69,7 +68,7 @@ class lista_datos:
             else:
                 text+="""<TD border="3"  bgcolor="yellow" gradientangle="315">"""+actual.dato.data+"""</TD>\n"""
             actual = actual.siguiente
-        text+=""" </TR></TABLE>>];
+        text+="""</TR></TABLE>>];
             }
             }\n"""
         f.write(text)
