@@ -1,6 +1,7 @@
 from nodos.nodo_dato import nodo_dato
 import sys
 import os
+from Modelos.patron import patron
 class lista_datos:
     def __init__(self):
         self.primero = None
@@ -76,3 +77,43 @@ class lista_datos:
         os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin'
         os.system('dot -Tpng bb.dot -o grafoOriginal.png')
         print("terminado")
+    def devolver_patrones(self,lista_patrones_nivel):
+        print("")
+        actual = self.primero
+        sentinela_de_filas = actual.dato.tiempo
+        fila_iniciada = False
+        recolector_de_patrones=""   
+        while actual != None:
+            if sentinela_de_filas!=actual.dato.tiempo:
+                fila_iniciada = False
+                lista_patrones_nivel.add_patron(patron(sentinela_de_filas,recolector_de_patrones))
+                recolector_de_patrones=""
+                sentinela_de_filas=actual.dato.tiempo
+            if fila_iniciada == False:
+                fila_iniciada = True
+                recolector_de_patrones+=str(actual.dato.data)+"-"   
+            else:
+                recolector_de_patrones+=str(actual.dato.data)+"-"
+            actual = actual.siguiente
+            print(sentinela_de_filas," ",recolector_de_patrones)
+        print("salio del while")
+        lista_patrones_nivel.add_patron(patron(sentinela_de_filas,recolector_de_patrones))
+        return 
+    def devolver_cadena_grupo(self,grupo):
+        string_resultado=""
+        string_temporal=""
+        buffer=""
+        for digito in grupo:
+            if digito.isdigit():
+                buffer+=digito
+            else:
+                string_temporal=""
+                actual = self.primero
+                while actual != None:
+                    if actual.dato.tiempo==int(buffer):
+                        string_temporal+=actual.dato.data+","
+                    actual = actual.siguiente
+                string_resultado+=string_temporal+"-"
+                buffer=""
+        return string_resultado
+        

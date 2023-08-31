@@ -83,7 +83,13 @@ def menu():
                                 nuevo = dato(int(tiempo_dato),amplitud_dato,0)
                                 lista_binaria_temporal.add_dato(nuevo)
                             contador +=1
-                        lista_senales_temporal.add_senal(senal(nombre_senal,tiempo_senal,amplitud_senal,lista_datos_temporal,lista_binaria_temporal,lista_patrones_temporal,lista_grupos_temporal))
+                        lista_senales_temporal.add_senal(senal(nombre_senal,
+                                                            tiempo_senal,
+                                                            amplitud_senal,
+                                                            lista_datos_temporal,
+                                                            lista_binaria_temporal,
+                                                            lista_grupos_temporal,
+                                                            lista_patrones_temporal))
                         lista_datos_temporal.recorrer()
                         lista_binaria_temporal.recorrer()
                         
@@ -94,7 +100,7 @@ def menu():
                 
                 menu()
             case "3":
-                    
+                lista_senales_temporal.calcular_patrones(nombre_senal)
                 menu()
             case "4":
                 print(" \n --------------------------------------------------------------")

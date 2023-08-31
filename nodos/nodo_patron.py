@@ -1,4 +1,4 @@
 class nodo_patron:
-    def __init__(self,patron=None,Siguiente=None):
+    def __init__(self,patron=None,siguiente=None):
         self.patron = patron
-        self.Siguiente = Siguiente
+        self.siguiente = siguiente

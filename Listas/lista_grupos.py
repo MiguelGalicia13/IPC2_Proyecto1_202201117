@@ -13,7 +13,7 @@ class lista_grupos:
             actual.siguiente
         actual.siguiente = nodo_grupo(grupo=grupo)
         self.contador_grupos += 1
-    def recorrer_e_imprimir(self):
+    def recorrer(self):
         print("Total de grupos: ",self.contador_grupos)
         print("=====================================")
         actual = self.primero

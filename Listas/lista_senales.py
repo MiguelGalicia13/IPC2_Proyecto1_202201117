@@ -42,4 +42,11 @@ class lista_senales:
             print("Patrones de senal: ")
             actual.senal.lista_patrones.recorrer()
             actual = actual.siguiente
-        print("=====================================")
+        print("=====================================") 
+    def calcular_patrones(self,nombre):
+        actual = self.primero
+        while actual != None:
+            if actual.senal.nombre==nombre:
+                actual.senal.lista_patrones_nivel=actual.senal.lista_patrones.devolver_patrones(actual.senal.lista_patrones_nivel)
+                actual.senal.lista_patrones_nivel.recorrer_patron()
+            
