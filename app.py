@@ -113,7 +113,7 @@ def menu():
                 print("4to Semestre \n")
                 menu()
             case "5":
-                lista_datos_temporal.generar_grafica_original(nombre_senal,tiempo_senal,amplitud_senal)
+                lista_binaria_temporal.generar_grafica_original(nombre_senal,tiempo_senal,amplitud_senal)
                 menu()
             case "6":
                 print("\n --------------------------------------------------------------")

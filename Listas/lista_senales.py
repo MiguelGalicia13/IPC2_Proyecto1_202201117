@@ -49,4 +49,20 @@ class lista_senales:
             if actual.senal.nombre==nombre:
                 actual.senal.lista_patrones_nivel=actual.senal.lista_patrones.devolver_patrones(actual.senal.lista_patrones_nivel)
                 actual.senal.lista_patrones_nivel.recorrer_patron()
+                lista_patrones_temporal=actual.senal.lista_patrones_nivel
+                grupos_sin_analizar=lista_patrones_temporal.encontar_coincidencias()
+                print(grupos_sin_analizar)
+                buffer=""
+                for digito in grupos_sin_analizar:
+                    if digito.isdigit() or digito==",":
+                        buffer+=digito
+                    elif digito=="-" and buffer!="":
+                        cadena_grupo=actual.senal.lista_datos.devolver_cadena_grupo(buffer)
+                        actual.senal.lista_grupos.add_grupo(cadena_grupo)
+                        buffer=""
+                    else:
+                        buffer=""
+                actual.senal.lista_grupos.recorrer()
+                return
+            actual=actual.siguiente
             

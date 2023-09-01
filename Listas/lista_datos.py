@@ -65,9 +65,9 @@ class lista_datos:
             if fila_iniciada == False:
                 fila_iniciada = True
                 text+="""<TR>"""
-                text+="""<TD border="3"  bgcolor="yellow" gradientangle="315">"""+actual.dato.data+"""</TD>\n"""
+                text+="""<TD border="3"  bgcolor="yellow" gradientangle="315">"""+str(actual.dato.data)+"""</TD>\n"""
             else:
-                text+="""<TD border="3"  bgcolor="yellow" gradientangle="315">"""+actual.dato.data+"""</TD>\n"""
+                text+="""<TD border="3"  bgcolor="yellow" gradientangle="315">"""+str(actual.dato.data)+"""</TD>\n"""
             actual = actual.siguiente
         text+="""</TR></TABLE>>];
             }
@@ -95,10 +95,8 @@ class lista_datos:
             else:
                 recolector_de_patrones+=str(actual.dato.data)+"-"
             actual = actual.siguiente
-            print(sentinela_de_filas," ",recolector_de_patrones)
-        print("salio del while")
         lista_patrones_nivel.add_patron(patron(sentinela_de_filas,recolector_de_patrones))
-        return 
+        return lista_patrones_nivel
     def devolver_cadena_grupo(self,grupo):
         string_resultado=""
         string_temporal=""

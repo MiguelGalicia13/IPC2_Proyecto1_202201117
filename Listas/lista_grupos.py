@@ -10,7 +10,7 @@ class lista_grupos:
             return
         actual = self.primero
         while actual.siguiente:
-            actual.siguiente
+            actual=actual.siguiente
         actual.siguiente = nodo_grupo(grupo=grupo)
         self.contador_grupos += 1
     def recorrer(self):

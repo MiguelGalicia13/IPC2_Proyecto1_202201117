@@ -10,7 +10,7 @@ class lista_patrones:
             return
         actual = self.primero
         while actual.siguiente:
-            actual.siguiente
+            actual=actual.siguiente
         actual.siguiente = nodo_patron(patron=patron)
         self.contador_patrones += 1
     def recorrer_patron(self):
@@ -36,6 +36,7 @@ class lista_patrones:
     def encontar_coincidencias(self):
         print("\n =====================================")
         print("\nBuscando coincidencias")
+        resultado = ""
         while self.primero:
             actual = self.primero
             temporal_str=""
@@ -51,6 +52,7 @@ class lista_patrones:
                 else:
                     if buffer!="":
                         self.eliminar(int(buffer))
+                        buffer=""
                     else:
                         buffer=""
                         
