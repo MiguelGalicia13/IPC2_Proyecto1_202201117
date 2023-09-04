@@ -92,7 +92,9 @@ def menu():
                                                             lista_patrones_temporal))
                         lista_datos_temporal.recorrer()
                         lista_binaria_temporal.recorrer()
-                        
+                    print("--------------------------------------------------------------")
+                    print("Calculo de Patrones")
+                    lista_senales_temporal.calcular_patrones(nombre_senal)
                     
                 print("--------------------------------------------------------------")
                 print("Procesamiento de archivo finalizado")
@@ -100,7 +102,7 @@ def menu():
                 
                 menu()
             case "3":
-                lista_senales_temporal.calcular_patrones(nombre_senal)
+                lista_grupos_temporal.recorrer()
                 menu()
             case "4":
                 print(" \n --------------------------------------------------------------")

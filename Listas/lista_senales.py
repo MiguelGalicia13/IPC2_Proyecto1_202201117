@@ -1,6 +1,7 @@
 from nodos.nodo_senal import nodo_senal
 import sys
 import os
+from Modelos.grupo import grupo
 class lista_senales:
     def __init__(self):
         self.primero = None
@@ -51,18 +52,17 @@ class lista_senales:
                 actual.senal.lista_patrones_nivel.recorrer_patron()
                 lista_patrones_temporal=actual.senal.lista_patrones_nivel
                 grupos_sin_analizar=lista_patrones_temporal.encontar_coincidencias()
-                print(grupos_sin_analizar)
+                print("Coincidencias: \n",grupos_sin_analizar)
                 buffer=""
                 for digito in grupos_sin_analizar:
                     if digito.isdigit() or digito==",":
                         buffer+=digito
                     elif digito=="-" and buffer!="":
                         cadena_grupo=actual.senal.lista_datos.devolver_cadena_grupo(buffer)
-                        actual.senal.lista_grupos.add_grupo(cadena_grupo)
+                        actual.senal.lista_grupos.add_grupo(buffer,cadena_grupo)
                         buffer=""
                     else:
                         buffer=""
                 actual.senal.lista_grupos.recorrer()
-                return
             actual=actual.siguiente
             

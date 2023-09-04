@@ -109,9 +109,12 @@ class lista_datos:
                 actual = self.primero
                 while actual != None:
                     if actual.dato.tiempo==int(buffer):
-                        string_temporal+=actual.dato.data+","
+                        if actual.dato.data=="0":
+                            string_temporal+="0"+","
+                        else:
+                            string_temporal+="1"+","
                     actual = actual.siguiente
-                string_resultado+=string_temporal+"-"
+                string_resultado=string_temporal
                 buffer=""
         return string_resultado
         

@@ -55,6 +55,5 @@ class lista_patrones:
                         buffer=""
                     else:
                         buffer=""
-                        
-            resultado +=temp_tiempo+"--"
+            resultado +=temp_tiempo+"-"
         return resultado
