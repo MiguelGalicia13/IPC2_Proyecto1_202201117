@@ -90,8 +90,7 @@ def menu():
                                                             lista_binaria_temporal,
                                                             lista_grupos_temporal,
                                                             lista_patrones_temporal))
-                        lista_datos_temporal.recorrer()
-                        lista_binaria_temporal.recorrer()
+                    lista_senales_temporal.recorrer()
                     print("--------------------------------------------------------------")
                     print("Calculo de Patrones")
                     lista_senales_temporal.calcular_patrones(nombre_senal)
@@ -102,7 +101,13 @@ def menu():
                 
                 menu()
             case "3":
-                lista_grupos_temporal.recorrer()
+                if archivo is None:
+                    print("Primero debes cargar un archivo.")
+                    menu()
+                try:
+                    lista_senales_temporal.escribir_archivo()
+                except Exception as e:
+                    print("Algo salio mal", e)
                 menu()
             case "4":
                 print(" \n --------------------------------------------------------------")
@@ -115,13 +120,18 @@ def menu():
                 print("4to Semestre \n")
                 menu()
             case "5":
-                lista_binaria_temporal.generar_grafica_original(nombre_senal,tiempo_senal,amplitud_senal)
+                if archivo is None:
+                    print("Primero debes cargar un archivo.")
+                    menu()
+                else:
+                    lista_binaria_temporal.generar_grafica_original(nombre_senal,tiempo_senal,amplitud_senal)
+                    lista_grupos_temporal.generar_grafica_original()
                 menu()
             case "6":
                 print("\n --------------------------------------------------------------")
                 print("Inicializando sistema")
-                lista_datos_temporal.delete()
-                lista_datos_temporal.recorrer()
+                lista_senales_temporal.delete_senal()
+                lista_senales_temporal.recorrer()
                 print("Sistema inicializado con exito")
                 print("------------------------------------------------------------------ \n")
                 menu()

@@ -22,4 +22,26 @@
         <dato t="3" A="3">7</dato>
         <dato t="1" A="2">96</dato>
     </senal>
+    <senal nombre="Prueba2" t="5" A="4">
+        <dato t="3" A="1">45</dato>
+        <dato t="1" A="3">7</dato>
+        <dato t="5" A="3">7</dato>
+        <dato t="2" A="4">0</dato>
+        <dato t="4" A="3">9</dato>
+        <dato t="5" A="1">0</dato>
+        <dato t="1" A="1">2</dato>
+        <dato t="3" A="2">3</dato>
+        <dato t="2" A="1">15</dato>
+        <dato t="1" A="4">0</dato>
+        <dato t="5" A="4">0</dato>
+        <dato t="4" A="4">0</dato>
+        <dato t="4" A="1">0</dato>
+        <dato t="5" A="2">3</dato>
+        <dato t="3" A="4">2</dato>
+        <dato t="4" A="2">3</dato>
+        <dato t="2" A="2">3</dato>
+        <dato t="2" A="3">7</dato>
+        <dato t="3" A="3">7</dato>
+        <dato t="1" A="2">96</dato>
+    </senal>
 </senales>

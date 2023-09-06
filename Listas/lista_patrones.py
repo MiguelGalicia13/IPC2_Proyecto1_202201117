@@ -14,6 +14,11 @@ class lista_patrones:
         actual.siguiente = nodo_patron(patron=patron)
         self.contador_patrones += 1
     def recorrer_patron(self):
+        if self.primero is None:
+            print("=====================================")
+            print("Lista de patrones vacia")
+            print("=====================================")
+            return
         print("Total de patrones: ",self.contador_patrones)
         print("=====================================")
         actual = self.primero
@@ -21,6 +26,7 @@ class lista_patrones:
             print("Tiempo: ",actual.patron.tiempo," Cadena Patron: ",actual.patron.cadena_patron)
             actual = actual.siguiente
         print("=====================================")
+        
     def eliminar(self,tiempo):
         actual = self.primero
         anterior = None

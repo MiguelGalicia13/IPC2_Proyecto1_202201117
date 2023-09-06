@@ -34,6 +34,11 @@ class lista_datos:
                 self.contador_datos += 1
                 return
     def recorrer(self):
+        if self.primero is None:
+            print("=====================================")
+            print("Lista de datos vacia")
+            print("=====================================")
+            return
         print("Total de datos: ",self.contador_datos)
         print("=====================================")
         actual = self.primero
@@ -41,11 +46,13 @@ class lista_datos:
             print("Tiempo: ",actual.dato.tiempo," Amplitud: ",actual.dato.amplitud_data,"Medicion :",actual.dato.data)
             actual = actual.siguiente
         print("=====================================")
-    def delete (self):
-        self.primero = None
-        self.contador_datos =0
         
     def generar_grafica_original(self,nombre,tiempos_xml,apmplitud_xml):
+        if self.primero is None:
+            print("=====================================")
+            print("Lista de datos vacia")
+            print("=====================================")
+            return
         print("Generando grafica")
         f =open("bb.dot","w+")
         text ="""
@@ -65,6 +72,7 @@ class lista_datos:
             if fila_iniciada == False:
                 fila_iniciada = True
                 text+="""<TR>"""
+                text+="""<TD border="3"  bgcolor="green" gradientangle="315">"""+str(actual.dato.tiempo)+"""</TD>\n"""
                 text+="""<TD border="3"  bgcolor="yellow" gradientangle="315">"""+str(actual.dato.data)+"""</TD>\n"""
             else:
                 text+="""<TD border="3"  bgcolor="yellow" gradientangle="315">"""+str(actual.dato.data)+"""</TD>\n"""
@@ -97,6 +105,9 @@ class lista_datos:
             actual = actual.siguiente
         lista_patrones_nivel.add_patron(patron(sentinela_de_filas,recolector_de_patrones))
         return lista_patrones_nivel
+    def delete(self):
+        self.primero = None
+        self.contador_datos =0
     def devolver_cadena_grupo(self,grupo):
         string_resultado=""
         string_temporal=""
